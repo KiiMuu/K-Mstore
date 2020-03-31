@@ -1,0 +1,61 @@
+// navbar style
+
+.navbar {
+    background: $mainColor;
+    .uk-logo {
+        color: $mainLight;
+        sub {
+            font-size: 9px;
+        }
+    }
+    .uk-navbar-nav {
+        li {
+            a {
+                color: $mainLight;
+                &:hover, &:active {
+                    color: #fff;
+                }
+            }
+        }
+    }
+
+    // sidebar btn
+    .uk-navbar-right {
+        .open-btn {
+            border: none;
+            line-height: 0;
+            i {
+                font-size: 28px;
+                color: $mainLight;
+            }
+        }
+    }
+
+    // sidebar
+    .uk-offcanvas-bar {
+        background-color: $mainColor;
+        h3 {
+            sub {
+                font-size: 9px;
+            }
+        }
+        .uk-nav {
+            padding: 5px 0;
+            li {
+                padding: 10px 0;
+                a {
+                    color: $mainLight;
+                }
+            }
+        }
+    }
+}
+
+// footer style
+.footer {
+    p {
+        a {
+            color: $mainColor;
+        }
+    }
+}

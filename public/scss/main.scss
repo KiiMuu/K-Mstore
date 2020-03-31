@@ -1,0 +1,9 @@
+@import './vars';
+
+body, html {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@import './layout.scss';
+@import './pages.scss';
+@import './media_Q.scss';

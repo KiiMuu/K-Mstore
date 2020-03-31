@@ -1,0 +1,37 @@
+<div uk-sticky="sel-target: .navbar; cls-active: uk-navbar-sticky">
+    <div class="navbar">
+        <div class="navbar-content">
+            <div class="uk-container">
+                <nav uk-navbar>
+                    <div class="uk-navbar-left">
+                        <a class="uk-navbar-item uk-logo uk-text-uppercase" href="/">K!M <sub>store</sub></a>
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav uk-visible@m">
+                            <li><a href="/">Shop</a></li>
+                            <li><a href="/products">Products</a></li>
+                            <li><a href="/cart">Cart</a></li>
+                            <li><a href="/orders">Orders</a></li>
+                            <li><a href="/admin/add-product">Add Products</a></li>
+                            <li><a href="/admin/products">Admin Products</a></li>
+                        </ul>
+                        <!-- Show Nav items in sidebar in phone screens -->
+                        <div class="uk-hidden@m">
+                            <button class="uk-button uk-button-default open-btn" type="button" uk-toggle="target: #offcanvas-overlay"><i class="fa fa-bars" aria-hidden="true"></i></button>
+                            <div id="offcanvas-overlay" uk-offcanvas="overlay: true">
+                                <div class="uk-offcanvas-bar">
+                                    <button class="uk-offcanvas-close" type="button" uk-close></button>
+                                    <h3 class="uk-text-uppercase">K!M <sub>store</sub></h3>
+                                    <ul class="uk-nav uk-nav-default">
+                                        <li><a href="/" class="uk-text-uppercase">Shop</a></li>
+                                        <li><a href="/admin/add-product" class="uk-text-uppercase">Add Product</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>

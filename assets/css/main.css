@@ -1,0 +1,32 @@
+body, html {
+  font-family: 'Montserrat', sans-serif; }
+
+.navbar {
+  background: #2E94B9; }
+  .navbar .uk-logo {
+    color: #F3F3F3; }
+    .navbar .uk-logo sub {
+      font-size: 9px; }
+  .navbar .uk-navbar-nav li a {
+    color: #F3F3F3; }
+    .navbar .uk-navbar-nav li a:hover, .navbar .uk-navbar-nav li a:active {
+      color: #fff; }
+  .navbar .uk-navbar-right .open-btn {
+    border: none;
+    line-height: 0; }
+    .navbar .uk-navbar-right .open-btn i {
+      font-size: 28px;
+      color: #F3F3F3; }
+  .navbar .uk-offcanvas-bar {
+    background-color: #2E94B9; }
+    .navbar .uk-offcanvas-bar h3 sub {
+      font-size: 9px; }
+    .navbar .uk-offcanvas-bar .uk-nav {
+      padding: 5px 0; }
+      .navbar .uk-offcanvas-bar .uk-nav li {
+        padding: 10px 0; }
+        .navbar .uk-offcanvas-bar .uk-nav li a {
+          color: #F3F3F3; }
+
+.footer p a {
+  color: #2E94B9; }
