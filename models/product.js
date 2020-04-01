@@ -1,27 +1,47 @@
-const Sequelize = require('sequelize');
+const mongoose = require('mongoose');
 
-const sequelize = require('../util/database');
+const Schema = mongoose.Schema;
 
-const Product = sequelize.define('product', {
-    id: {
-        type: Sequelize.INTEGER,
-        autoIncrement: true,
-        allowNull: false,
-        primarykey: true
+const productSchema = new Schema({
+    title: {
+        type: String,
+        required: true
     },
-    title: Sequelize.STRING,
     price: {
-        type: Sequelize.DOUBLE,
-        allowNull: false
-    },
-    imageUrl: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: Number,
+        required: true
     },
     description: {
-        type: Sequelize.STRING,
-        allowNull: false
+        type: String,
+        required: true
+    },
+    imageUrl: {
+        type: String,
+        required: true
     }
 });
 
-module.exports = Product;
+
+
+
+// const getDb = require('../util/database').getDb;
+
+// class Product {
+//     constructor(title, price, description, imageUrl) {
+//         this.title = title;
+//         this.price = price;
+//         this.description = description;
+//         this.imageUrl = imageUrl;
+//     }
+
+//     save() {
+//         const db = getDb();
+//         return db.collection('products').insertOne(this).then(result => {
+//             console.log(result);
+//         }).catch(err => {
+//             console.log(err);
+//         });
+//     }
+// }
+
+// module.exports = Product;
