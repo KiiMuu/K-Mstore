@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const csrf = require('csurf');
 
 const MONGO_URI = 'mongodb://localhost/kim-store';
 
@@ -12,6 +13,7 @@ const store = new MongoDBStore({
     uri: MONGO_URI,
     collection: 'sessions'
 });
+const csrfProtection = csrf();
 
 // const sequelize = require('./util/database');
 // const mongoConnect = require('./util/database').mongoConnect;
@@ -34,6 +36,7 @@ app.use(session({
     saveUninitialized: false,
     store
 }));
+app.use(csrfProtection);
 
 app.use((req, res, next) => {
     if (!req.session.user) {
@@ -45,17 +48,16 @@ app.use((req, res, next) => {
     }).catch(err => console.log(err));
 });
 
+// use some variables via entire app
+app.use((req, res, next) => {
+    res.locals.isAuthenticated = req.session.isLoggedIn;
+    res.locals.csrfToken = req.csrfToken();
+    next();
+});
 
 // set template engine
 app.set('view engine', 'ejs');
 app.set('views', 'views');
-
-app.use((req, res, next) => {
-    User.findById('5e8502c07afc6c1580d9be76').then(user => {
-        req.user = user;
-        next();
-    }).catch(err => console.log(err));
-});
 
 // use routes
 app.use('/admin', adminRoutes);

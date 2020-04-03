@@ -5,8 +5,7 @@ const User = require('../models/user');
 exports.getLogin = (req, res, next) => {
     res.render('auth/login', {
         pageTitle: 'Login',
-        path: '/login',
-        isAuthenticated: false
+        path: '/login'
     });
 }
 
@@ -37,8 +36,7 @@ exports.postLogin = (req, res, next) => {
 exports.getSignUp = (req, res, next) => {
     res.render('auth/signup', {
         pageTitle: 'Sign Up',
-        path: '/signup',
-        isAuthenticated: false
+        path: '/signup'
     });
 };
 
