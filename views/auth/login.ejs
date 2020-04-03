@@ -3,6 +3,9 @@
 <!-- page content -->
 <div class="login">
     <div class="uk-container">
+        <% if (errorMessage) { %>
+            <p><%= errorMessage %></p>
+        <% } %>
         <form action="/login" method="POST">
             <div class="form-control">
                 <label for="email">E-mail</label>
