@@ -18,30 +18,12 @@ const productSchema = new Schema({
     imageUrl: {
         type: String,
         required: true
+    },
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref: 'User',
+        required: true
     }
 });
 
-
-
-
-// const getDb = require('../util/database').getDb;
-
-// class Product {
-//     constructor(title, price, description, imageUrl) {
-//         this.title = title;
-//         this.price = price;
-//         this.description = description;
-//         this.imageUrl = imageUrl;
-//     }
-
-//     save() {
-//         const db = getDb();
-//         return db.collection('products').insertOne(this).then(result => {
-//             console.log(result);
-//         }).catch(err => {
-//             console.log(err);
-//         });
-//     }
-// }
-
-// module.exports = Product;
+module.exports = mongoose.model('Product', productSchema);

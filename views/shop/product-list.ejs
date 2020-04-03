@@ -19,8 +19,10 @@
                             <p><%= product.description %></p>
                         </div>
                         <div>
-                            <a href="/products/<%= product.id %>">Details</a>
-                            <%- include('../includes/add-to-cart.ejs', {product}) %>
+                            <a href="/products/<%= product._id %>">Details</a>
+                            <% if (isAuthenticated) { %>
+                                <%- include('../includes/add-to-cart.ejs', {product}) %>
+                            <% } %>
                         </div>
                     </article>
                 <% } %>

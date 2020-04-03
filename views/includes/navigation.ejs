@@ -10,10 +10,22 @@
                         <ul class="uk-navbar-nav uk-visible@m">
                             <li><a href="/">Shop</a></li>
                             <li><a href="/products">Products</a></li>
-                            <li><a href="/cart">Cart</a></li>
-                            <li><a href="/orders">Orders</a></li>
-                            <li><a href="/admin/add-product">Add Products</a></li>
-                            <li><a href="/admin/products">Admin Products</a></li>
+                            <% if (isAuthenticated) { %>
+                                <li><a href="/cart">Cart</a></li>
+                                <li><a href="/orders">Orders</a></li>
+                                <li><a href="/admin/add-product">Add Products</a></li>
+                                <li><a href="/admin/products">Admin Products</a></li>
+                            <% } %>
+                            <% if (!isAuthenticated) { %>
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="/signup">Sign Up</a></li>
+                            <% } else { %>
+                                <li>
+                                    <form action="/logout" method="POST">
+                                        <button type="submit">Logout</button>
+                                    </form>
+                                </li>
+                            <% } %>
                         </ul>
                         <!-- Show Nav items in sidebar in phone screens -->
                         <div class="uk-hidden@m">
