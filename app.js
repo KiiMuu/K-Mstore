@@ -49,6 +49,8 @@ const authRoutes = require('./routes/auth');
 
 // get controllers
 const errorController = require('./controllers/error');
+const shopController = require('./controllers/shop');
+const isAuth = require('./middleware/is-auth');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(multer({ storage: fileStorage, fileFilter: fileFilter }).single('image'));
@@ -60,13 +62,11 @@ app.use(session({
     saveUninitialized: false,
     store
 }));
-app.use(csrfProtection);
 app.use(flash());
 
 // use some local variables via entire app
 app.use((req, res, next) => {
     res.locals.isAuthenticated = req.session.isLoggedIn;
-    res.locals.csrfToken = req.csrfToken();
     next();
 });
 
@@ -91,6 +91,12 @@ app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 // use routes
+app.post('/create-order', isAuth, shopController.postOrder);
+app.use(csrfProtection);
+app.use((req, res, next) => {
+    res.locals.csrfToken = req.csrfToken();
+    next();
+});
 app.use('/admin', adminRoutes);
 app.use(shopRoutes);
 app.use(authRoutes);
