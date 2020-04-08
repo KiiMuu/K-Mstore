@@ -2,45 +2,62 @@
 <%- include('../includes/navigation.ejs') %>
 <!-- page content -->
 <div class="signup">
-    <div class="uk-container">
-        <% if (errorMessage) { %>
-            <p><%= errorMessage %></p>
-        <% } %>
-        <form action="/signup" method="POST" novalidate>
-            <div class="form-control">
-                <label for="email">E-mail</label>
-                <input
-                    class="<%= validationErrors.find(e => e.param === 'email') ? 'invalid' : '' %>"
-                    type="email" 
-                    name="email" 
-                    id="email" 
-                    value="<%= oldInputs.email %>"
-                >
-            </div>
-            <div class="form-control">
-                <label for="password">Password</label>
-                <input
-                    class="<%= validationErrors.find(e => e.param === 'password') ? 'invalid' : '' %>" 
-                    type="password" 
-                    name="password" 
-                    id="password" 
-                    value="<%= oldInputs.password %>"
-                >
-            </div>
-            <div class="form-control">
-                <label for="confirmPassword">Confirm Password</label>
-                <input
-                    class="<%= validationErrors.find(e => e.param === 'confirmPassword') ? 'invalid' : '' %>"  
-                    type="password" 
-                    name="confirmPassword" 
-                    id="confirmPassword" 
-                    value="<%= oldInputs.confirmPassword %>"
-                >
-            </div>
-
-            <input type="hidden" value="<%= csrfToken %>" name="_csrf">
-            <button type="submit">Sign Up</button>
-        </form>
+    <div class="uk-panel uk-container uk-margin-large-top">
+        <h2 class="uk-text-uppercase">Sign up</h2>
+        <div class="signup-content uk-box-shadow-large uk-padding-large">
+            <% if (errorMessage) { %>
+                <div class="uk-alert-danger" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p><%= errorMessage %></p>    
+                </div> 
+            <% } %>
+            <form action="/signup" method="POST" novalidate class="uk-grid-small uk-form-stacked" uk-grid>
+                <div class="uk-width-1-3@s">
+                    <label class="uk-form-label" for="email">Email</label>
+                    <div class="uk-form-controls">
+                        <input 
+                            class="uk-input <%= validationErrors.find(e => e.param === 'email') ? 'uk-form-danger' : '' %>"
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="Email"
+                            value="<%= oldInputs.email %>"
+                        />
+                    </div>  
+                </div>
+                <div class="uk-width-1-3@s">
+                    <label class="uk-form-label" for="password">Password</label>
+                    <div class="uk-form-controls">
+                        <input 
+                            class="uk-input <%= validationErrors.find(e => e.param === 'password') ? 'uk-form-danger' : '' %>" 
+                            type="password" 
+                            name="password" 
+                            id="password"
+                            placeholder="Password"
+                            value="<%= oldInputs.password %>"
+                        />
+                    </div>
+                </div>
+                <div class="uk-width-1-3@s">
+                    <label class="uk-form-label" for="confirmPassword">Confirm Password</label>
+                    <div class="uk-form-controls">
+                        <input 
+                            class="uk-input <%= validationErrors.find(e => e.param === 'confirmPassword') ? 'uk-form-danger' : '' %>"  
+                            type="password" 
+                            name="confirmPassword" 
+                            id="confirmPassword" 
+                            placeholder="Confirm Password"
+                            value="<%= oldInputs.confirmPassword %>"
+                        />
+                    </div>
+                </div>
+                <div class="uk-width-1-2@s uk-text-left">
+                    <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                    <button class="uk-button uk-button-primary" type="submit">Sign Up</button>
+                </div>
+    
+            </form>
+        </div>
     </div>
 </div>
 <%- include('../includes/end.ejs') %>

@@ -1,7 +1,39 @@
 <%- include('../includes/head.ejs') %>
 <%- include('../includes/navigation.ejs') %>
-<!-- page content -->
 <div class="reset-password">
+    <div class="uk-panel uk-container uk-margin-large-top">
+        <h2 class="uk-text-uppercase">Reset your password</h2>
+        <div class="reset-content uk-box-shadow-large uk-padding-large">
+            <% if (errorMessage) { %>
+                <div class="uk-alert-danger" uk-alert>
+                    <a class="uk-alert-close" uk-close></a>
+                    <p><%= errorMessage %></p>    
+                </div> 
+            <% } %>
+            <form action="/reset" method="POST" novalidate class="uk-grid-small uk-form-stacked" uk-grid>
+                <div class="uk-width-1-1@s">
+                    <label class="uk-form-label" for="email">Email</label>
+                    <div class="uk-form-controls">
+                        <input 
+                            class="uk-input"
+                            type="email" 
+                            name="email" 
+                            id="email" 
+                            placeholder="Email"
+                        />
+                    </div>  
+                </div>
+                <div class="uk-width-1-1@s">
+                    <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                    <button class="uk-button uk-button-primary uk-margin-small-right" type="submit">Reset Password</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- page content -->
+<!-- <div class="reset-password">
     <div class="uk-container">
         <% if (errorMessage) { %>
             <p><%= errorMessage %></p>
@@ -16,5 +48,5 @@
             <button type="submit">Reset Password</button>
         </form>
     </div>
-</div>
+</div> -->
 <%- include('../includes/end.ejs') %>

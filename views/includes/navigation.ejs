@@ -1,5 +1,5 @@
 <div uk-sticky="sel-target: .navbar; cls-active: uk-navbar-sticky">
-    <div class="navbar">
+    <div id="nav" class="navbar">
         <div class="navbar-content">
             <div class="uk-container">
                 <nav uk-navbar>
@@ -11,19 +11,21 @@
                             <li><a href="/">Shop</a></li>
                             <li><a href="/products">Products</a></li>
                             <% if (isAuthenticated) { %>
-                                <li><a href="/cart">Cart</a></li>
+                                <li><a href="/cart">Cart<span class="uk-badge"><%= cartItems.length %></span></a></li>
                                 <li><a href="/orders">Orders</a></li>
                                 <li><a href="/admin/add-product">Add Products</a></li>
                                 <li><a href="/admin/products">Admin Products</a></li>
                             <% } %>
                             <% if (!isAuthenticated) { %>
-                                <li><a href="/login">Login</a></li>
+                                <li><a href="/login">Sign In</a></li>
                                 <li><a href="/signup">Sign Up</a></li>
                             <% } else { %>
                                 <li>
                                     <form action="/logout" method="POST">
                                         <input type="hidden" value="<%= csrfToken %>" name="_csrf">
-                                        <button type="submit">Logout</button>
+                                        <button type="submit" class="logout-btn">
+                                            <i class="fa fa-sign-out" uk-tooltip="title: Logout; pos: bottom"></i>
+                                        </button>
                                     </form>
                                 </li>
                             <% } %>
@@ -39,19 +41,21 @@
                                         <li><a href="/">Shop</a></li>
                                         <li><a href="/products">Products</a></li>
                                         <% if (isAuthenticated) { %>
-                                            <li><a href="/cart">Cart</a></li>
+                                            <li><a href="/cart">Cart<span class="uk-badge"><%= cartItems.length %></span></a></li>
                                             <li><a href="/orders">Orders</a></li>
                                             <li><a href="/admin/add-product">Add Products</a></li>
                                             <li><a href="/admin/products">Admin Products</a></li>
                                         <% } %>
                                         <% if (!isAuthenticated) { %>
-                                            <li><a href="/login">Login</a></li>
+                                            <li><a href="/login">Sign In</a></li>
                                             <li><a href="/signup">Sign Up</a></li>
                                         <% } else { %>
                                             <li>
                                                 <form action="/logout" method="POST">
                                                     <input type="hidden" value="<%= csrfToken %>" name="_csrf">
-                                                    <button type="submit">Logout</button>
+                                                    <button type="submit" class="logout-btn">
+                                                        <i class="fa fa-sign-out" uk-tooltip="title: Logout; pos: bottom"></i>
+                                                    </button>
                                                 </form>
                                             </li>
                                         <% } %>

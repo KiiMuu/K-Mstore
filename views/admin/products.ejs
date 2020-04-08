@@ -1,34 +1,39 @@
 <%- include('../includes/head.ejs') %>
 <%- include('../includes/navigation.ejs') %>
 <!-- page content -->
-<div class="admin-products">
+<div class="admin-products uk-margin-large-top">
     <div class="uk-container">
-        <% if (prods.length > 0) { %>
-            <h1>My products</h1>
-            <% for (let product of prods) { %>
-                <article class="card product-item">
-                    <header class="card__header">
-                        <h1 class="product__title"><%= product.title %></h1>
-                    </header>
-                    <div class="card__image">
-                        <img src="/<%= product.imageUrl %>"
-                            alt="<%= product.title %>">
-                    </div>
-                    <div class="card__content">
-                        <h2 class="product__price">$<%= product.price %></h2>
-                        <p class="product__description"><%= product.description %></p>
-                    </div>
-                    <div class="card__actions">
-                        <a href="/admin/edit-product/<%= product.id %>?edit=true" class="btn">Edit</a>
-                        <input type="hidden" name="productId" value="<%= product.id %>">
-                        <input type="hidden" value="<%= csrfToken %>" name="_csrf">
-                        <button class="btn" type="button" onclick="deleteProduct(this)">Delete</button>
-                    </div>
-                </article>
+        <h2 class="uk-text-uppercase">My Products</h2>
+        <div class="admin-products-content">
+            <% if (prods.length > 0) { %>   
+                <div class="uk-child-width-1-3@m" uk-grid uk-height-match="target: > article > .uk-card">
+                    <% for (let product of prods) { %>
+                        <article class="product-item">
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+                                </div>
+                                <div class="uk-card-body uk-padding-small">
+                                    <h3 class="uk-card-title"><%= product.title %></h3>
+                                    <div class="uk-card-badge uk-label">$<%= product.price %></div>
+                                    <p><%= product.description %></p>
+                                </div>
+                                <div class="uk-card-footer">
+                                    <a href="/admin/edit-product/<%= product.id %>?edit=true" class="uk-button uk-button-text uk-float-left">Edit</a>
+                                    <input type="hidden" name="productId" value="<%= product.id %>">
+                                    <input type="hidden" value="<%= csrfToken %>" name="_csrf">
+                                    <button class="btn uk-button uk-button-text uk-text-danger uk-float-right" type="button" onclick="deleteProduct(this)">Delete</button>
+                                </div>
+                            </div>
+                        </article>
+                    <% } %>
+                </div>
+            <% } else { %>
+                <div class="js-upload uk-placeholder uk-text-center">
+                    <p class="uk-text-middle">There're no products yet. <a href="/admin/add-product" class="uk-text-uppercase">Add some</a></p>
+                </div>
             <% } %>
-        <% } else { %>
-            <p>No products</p>
-        <% } %>
+        </div>
     </div>
 </div>
 <%- include('../includes/end.ejs') %>

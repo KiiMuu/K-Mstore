@@ -1,10 +1,13 @@
 <%- include('includes/head.ejs') %>
 <%- include('includes/navigation.ejs') %>
 <!-- page content -->
-<div class="500">
+<div class="500 uk-panel uk-container uk-margin-large-top">
     <div class="uk-container">
-        <span>Some error occurred!</span>
-        <p>We're working on fixing this, sorry for the inconvience</p>
+        <div class="js-upload uk-placeholder uk-text-center">
+            <span uk-icon="icon: warning"></span>
+            <span>Some error occurred!</span>
+            <p class="uk-text-middle">We're working on fixing this, sorry for the inconvience</p>
+        </div>
     </div>
 </div>
 <%- include('includes/end.ejs') %>

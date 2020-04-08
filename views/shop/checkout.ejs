@@ -1,31 +1,43 @@
 <%- include('../includes/head.ejs') %>
 <%- include('../includes/navigation.ejs') %>
-<div class="checkout">
-    <div class="uk-container">
-        <ul class="cart__item-list">
-            <% products.forEach(p => { %>
-                <li class="cart__item">
-                    <h1><%= p.productId.title %></h1>
-                    <h2>Quantity: <%= p.quantity %></h2>
-                </li>
-            <% }) %>
-        </ul>
-        <div>
-            <h2>Total: <%= totalSum %></h2>
-        </div>
-        <div>
-            <form action="/create-order" method="POST">
-                <script 
-                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_NrZwGTGlWaj1z90olidCgJIb009FOtFfvL"
-                    data-amount="<%= totalSum * 100 %>"
-                    data-name="Your Order"
-                    data-description="All the items you ordered"
-                    data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
-                    data-locale="auto"
-                    data-currency="usd">
-                </script> 
-            </form>
+<div class="checkout uk-margin-large-top">
+    <div class="uk-container uk-container-small">
+        <div class="uk-overflow-auto">
+            <table class="uk-table uk-table-justify uk-table-divider uk-table-middle">
+                <thead>
+                    <tr>
+                        <th>Product title</th>
+                        <th class="uk-width-small">Quantity</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% products.forEach(p => { %>
+                        <tr>
+                            <td><%= p.productId.title %> | $<%= p.productId.price %></td>
+                            <td><%= p.quantity %></td>
+                            <td><%= p.quantity * p.productId.price %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+            <div class="total">
+                <h3>Total Price: $<%= totalSum %></h3>
+            </div>
+            <div class="uk-text-center">
+                <form action="/create-order" method="POST">
+                    <script 
+                        src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                        data-key="pk_test_NrZwGTGlWaj1z90olidCgJIb009FOtFfvL"
+                        data-amount="<%= totalSum * 100 %>"
+                        data-name="Your Order"
+                        data-description="All the items you ordered"
+                        data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                        data-locale="auto"
+                        data-currency="usd">
+                    </script> 
+                </form>
+            </div>
         </div>
     </div>
 </div>

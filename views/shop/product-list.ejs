@@ -1,36 +1,44 @@
 <%- include('../includes/head.ejs') %>
 <%- include('../includes/navigation.ejs') %>
 <!-- page content -->
-<div class="product-list">
+<div class="product-list uk-margin-large-top">
     <div class="uk-container">
-        <% if (prods.length > 0) { %>
-            <h1>My products</h1>
-            <div>
-                <% for (let product of prods) { %>
-                    <article>
-                        <header>
-                            <h1><%= product.title %></h1>
-                        </header>
-                        <div>
-                            <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+        <h2 class="uk-text-uppercase">All Products</h2>
+        <div class="products-content">
+            <% if (prods.length > 0) { %>   
+                <div class="uk-child-width-1-3@m" uk-grid uk-height-match="target: > div > .uk-card">
+                    <% for (let product of prods) { %>
+                        <div class="product-item">
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-media-top">
+                                    <img src="/<%= product.imageUrl %>" alt="<%= product.title %>">
+                                </div>
+                                <div class="uk-card-body uk-padding-small">
+                                    <h3 class="uk-card-title"><%= product.title %></h3>
+                                    <div class="uk-card-badge uk-label">$<%= product.price %></div>
+                                    <p><%= product.description %></p>
+                                </div>
+                                <div class="uk-card-footer">
+                                    <a href="/products/<%= product._id %>" class="uk-button uk-button-text uk-float-left">Details</a>
+                                    <% if (isAuthenticated) { %>
+                                        <div class="uk-float-right">
+                                            <%- include('../includes/add-to-cart.ejs', {product}) %>
+                                        </div>
+                                    <% } %>
+                                </div>
+                            </div>
                         </div>
-                        <div>
-                            <h2>$<%= product.price %></h2>
-                            <p><%= product.description %></p>
-                        </div>
-                        <div>
-                            <a href="/products/<%= product._id %>">Details</a>
-                            <% if (isAuthenticated) { %>
-                                <%- include('../includes/add-to-cart.ejs', {product}) %>
-                            <% } %>
-                        </div>
-                    </article>
-                <% } %>
-            </div>
-            <%- include('../includes/pagination.ejs', {currentPage, nextPage, previousPage, lastPage, hasNextPage, hasPreviousPage}) %>
-        <% } else { %>
-            <p>No products</p>
-        <% } %>
+                    <% } %>
+                </div>
+                <div class=" uk-margin-medium-top">
+                    <%- include('../includes/pagination.ejs', {currentPage, nextPage, previousPage, lastPage, hasNextPage, hasPreviousPage}) %>
+                </div>
+            <% } else { %>
+                <div class="js-upload uk-placeholder uk-text-center">
+                    <p class="uk-text-middle">There're no products yet.</p>
+                </div>
+            <% } %>
+        </div>
     </div>
 </div>
 <%- include('../includes/end.ejs') %>

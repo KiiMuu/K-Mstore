@@ -4,6 +4,7 @@
     background: $mainColor;
     .uk-logo {
         color: $mainLight;
+        font-size: 25px !important;
         sub {
             font-size: 9px;
         }
@@ -29,12 +30,31 @@
                 color: $mainLight;
             }
         }
+        .logout-btn {
+            background: none;
+            border: none;
+            color: $mainLight;
+            min-height: 67px;
+            text-transform: uppercase;
+            transition: .1s ease-in-out;
+            transition-property: color,background-color;
+            cursor: pointer;
+            font-size: 19px;
+            &:hover, &:active {
+                color: #fff;
+            }
+        }
+        .uk-badge {
+            margin-top: -16px;
+            background: $mainDark;
+        }
     }
 
     // sidebar
     .uk-offcanvas-bar {
         background-color: $mainColor;
         h3 {
+            // font-size: 25px;
             sub {
                 font-size: 9px;
             }
@@ -42,12 +62,54 @@
         .uk-nav {
             padding: 5px 0;
             li {
-                padding: 10px 0;
+                padding: 8px 0;
                 a {
                     color: $mainLight;
+                    text-transform: uppercase;
+                    font-size: .8rem;
+                    .uk-badge {
+                        margin-top: -10px;
+                        background: $mainDark;
+                        color: $mainLight;
+                        line-height: 12px;
+                    }
                 }
             }
+            .logout-btn {
+                padding: 0;
+                min-height: 25px;
+                font-size: 19px;
+            }
         }
+    }
+
+    .uk-navbar-item, 
+    .uk-navbar-nav > li > a, 
+    .uk-navbar-toggle {
+        min-height: 67px;
+        font-size: .8rem;
+    }
+}
+
+.scrolled {
+    background-color: $mainColor !important;
+    transition: .18s ease-in-out;
+}
+
+.scrolled-1 {
+    background-color: $mainColor !important;
+}
+
+// header
+.header {
+    margin-top: -67px;
+    .uk-overlay-primary {
+        background-color: rgba(0, 0, 0, .4);
+    }
+    h2 {
+        color: $mainLight;
+        font-size: 50px;
+        font-weight: 900;
     }
 }
 
